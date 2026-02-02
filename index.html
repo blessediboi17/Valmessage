@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine ❤️</title>
+
+<style>
+body{
+  background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Arial;
+  overflow:hidden;
+}
+
+.card{
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  text-align:center;
+  box-shadow:0 0 20px rgba(0,0,0,0.2);
+  animation: pop 1s ease;
+  width:90%;
+  max-width:350px;
+}
+
+input{
+  padding:10px;
+  width:90%;
+  margin:10px 0;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+button{
+  padding:10px 20px;
+  margin:10px;
+  border:none;
+  border-radius:10px;
+  font-size:18px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+#yes{
+  background:#ff4b5c;
+  color:white;
+}
+
+#no{
+  background:#333;
+  color:white;
+  position:absolute;
+}
+
+#message{
+  display:none;
+  font-size:20px;
+  color:#ff2e63;
+  margin-top:15px;
+  animation: fade 1s;
+}
+
+.heart{
+  position:absolute;
+  color:red;
+  animation: float 4s infinite;
+  opacity:0.7;
+}
+
+@keyframes pop{
+  from{transform:scale(0);}
+  to{transform:scale(1);}
+}
+
+@keyframes fade{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+@keyframes float{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-20px);}
+  100%{transform:translateY(0);}
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+<h2>Will You Be My Valentine? ❤️</h2>
+
+<input id="name" placeholder="Type your name here">
+
+<button id="yes" onclick="love()">YES</button>
+<button id="no" onmouseover="run()">NO</button>
+
+<div id="message"></div>
+</div>
+
+<script>
+function run(){
+  var no = document.getElementById("no");
+
+  var x = Math.random() * (window.innerWidth - 100);
+  var y = Math.random() * (window.innerHeight - 50);
+
+  no.style.left = x + "px";
+  no.style.top = y + "px";
+}
+
+function love(){
+  var name = document.getElementById("name").value;
+
+  if(name == ""){
+    alert("Please enter your name first 😊");
+    return;
+  }
+
+  document.getElementById("message").style.display="block";
+
+  document.getElementById("message").innerHTML =
+  "Dear " + name + ",<br>" +
+  "You just made my heart the happiest place on earth! ❤️<br>" +
+  "I choose you today, tomorrow and forever 🥰";
+
+  createHearts();
+}
+
+function createHearts(){
+  for(let i=0;i<25;i++){
+    let h = document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.top=Math.random()*100+"vh";
+    document.body.appendChild(h);
+  }
+}
+</script>
+
+</body>
+  </html>
